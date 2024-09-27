@@ -5,7 +5,7 @@
 	let peer = new Peer()
 
 	let connected = false
-	let peerID = peer.id
+	let peerID = ''
 
 	onMount(() => {
 		let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -18,6 +18,11 @@
 				})
 			})
 		})
+
+		peer.on('open', function(id) {
+			console.log('My peer ID is: ' + id);
+			peerID = id;
+		});
 	})
 
 </script>
