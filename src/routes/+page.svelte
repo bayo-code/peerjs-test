@@ -2,9 +2,10 @@
 	import { Peer } from "peerjs"
 	import { onMount } from 'svelte';
 
-	let peer = new Peer("waiter")
+	let peer = new Peer()
 
 	let connected = false
+	let peerID = peer.id
 
 	onMount(() => {
 		let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -21,6 +22,6 @@
 
 </script>
 
-
+<h1>Peer ID: {peerID}</h1>
 <h1>{!connected ? 'Waiting for connection...' : 'Connected'}</h1>
 <audio id="remote-audio" controls autoplay></audio>
