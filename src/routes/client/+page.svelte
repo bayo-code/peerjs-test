@@ -11,11 +11,13 @@
 		getUserMedia({audio: true}, (stream) => {
 			let call = peer.call('waiter', stream)
 			console.log('Connected! Call: ', call);
-			call.on('stream', () => {
+			call.on('stream', (remoteStream) => {
 				connected = true;
+				document.querySelector('#remote-audio').srcObject = remoteStream
 			})
 		})
 	})
 </script>
 
 <h1>{connected ? 'Connected' : 'Connecting'}</h1>
+<audio id="remote-audio" controls autoplay></audio>

@@ -11,8 +11,9 @@
 		peer.on('call', (call) => {
 			getUserMedia({audio: true}, (stream) => {
 				call.answer(stream);
-				call.on('stream', () => {
+				call.on('stream', (remoteStream) => {
 					connected = true;
+					document.querySelector('#remote-audio').srcObject = remoteStream
 				})
 			})
 		})
@@ -22,3 +23,4 @@
 
 
 <h1>{!connected ? 'Waiting for connection...' : 'Connected'}</h1>
+<audio id="remote-audio" controls autoplay></audio>
